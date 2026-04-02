@@ -286,7 +286,7 @@ h1, h2, h3, h4 {
     transition: var(--transition);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 375px) {
     .stat {
         width: 85%;
     }
@@ -326,7 +326,7 @@ h1, h2, h3, h4 {
     transition: transform 0.5s ease;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 375px) {
     .mac-mini-frame {
         width: 88%;
     }
@@ -970,6 +970,7 @@ tr:hover {
     color: var(--text-primary);
     font-family: 'Inter', sans-serif;
     transition: var(--transition);
+    font-size: 16px !important;
 }
 
 .form-group input:focus,
