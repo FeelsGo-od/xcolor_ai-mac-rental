@@ -775,6 +775,10 @@ tr:hover {
     text-align: center;
 }
 
+.pricing-grid .btn-block {
+    color: #efefef;
+}
+
 .pricing-note {
     background-color: var(--bg-card);
     padding: 1.5rem;
@@ -979,6 +983,10 @@ tr:hover {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.form-group select option {
+    background-color: #293445;
 }
 
 .form-note {
