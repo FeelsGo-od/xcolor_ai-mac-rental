@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             try {
                 // Send to your Express server
-                const response = await fetch('http://https://xcolor-ai-backend.vercel.app/telegram-webhook', {
+                const response = await fetch('https://xcolor-ai-backend.vercel.app/telegram-webhook', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formObject)
