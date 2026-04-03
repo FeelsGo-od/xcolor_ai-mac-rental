@@ -933,6 +933,9 @@ tr:hover {
 }
 
 /* Contact Section */
+.contact-section .container {
+        margin-bottom: 21px;
+}
 @media (max-width: 480px) {
     .contact-section {
         padding: 0;

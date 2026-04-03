@@ -59,42 +59,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // Contact Form Submission
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Get form data
             const formData = new FormData(this);
-            const formObject = {};
-            formData.forEach((value, key) => {
-                formObject[key] = value;
-            });
+            const formObject = Object.fromEntries(formData);
             
-            // Simulate form submission (in a real site, this would be an API call)
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
             
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
             
-            // Show success message
-            setTimeout(() => {
-                // In a real implementation, you would send the data to your server
-                // For now, we'll just show a success message
-                alert(`Thank you for your inquiry, ${formObject.name}! We'll contact you at ${formObject.email} within 24 hours.`);
+            try {
+                // Send to your Express server
+                const response = await fetch('http://https://xcolor-ai-backend.vercel.app/telegram-webhook', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formObject)
+                });
                 
-                // Reset form
-                contactForm.reset();
+                const result = await response.json();
+                
+                if (response.ok) {
+                    // Success message (keep your existing UI)
+                    const successHTML = `
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>Message sent successfully!</strong><br>
+                        Thank you, ${formObject.name}! We've received your inquiry and will contact you at ${formObject.email} within 24 hours.
+                    </div>`;
+                    
+                    const successDiv = document.createElement('div');
+                    successDiv.innerHTML = successHTML;
+                    contactForm.parentNode.insertBefore(successDiv, contactForm);
+                    
+                    contactForm.style.display = 'none';
+                    console.log('Message also sent to Telegram bot');
+                } else {
+                    throw new Error(result.error || 'Failed to send message');
+                }
+            } catch (error) {
+                alert(`Sorry, there was an error: ${error.message}. Please email us directly at contact@xcolor-ai.com`);
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-                
-                // Log to console (for debugging)
-                console.log('Form submission:', formObject);
-                
-                // In a real implementation, you might want to:
-                // 1. Send data to your backend API
-                // 2. Show a success message on the page
-                // 3. Send a notification to your Telegram/email
-            }, 1500);
+            }
         });
     }
     
