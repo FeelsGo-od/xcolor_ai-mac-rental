@@ -284,6 +284,9 @@ h1, h2, h3, h4 {
     text-align: center;
     border: 1px solid var(--border-color);
     transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 @media (max-width: 375px) {
