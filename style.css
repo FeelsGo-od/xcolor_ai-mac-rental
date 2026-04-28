@@ -199,6 +199,16 @@ h1, h2, h3, h4 {
     cursor: pointer;
 }
 
+.language-switcher select {
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    background: #1e293b;
+}
+
 /* Buttons */
 .btn {
     display: inline-block;
